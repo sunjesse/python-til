@@ -3,7 +3,7 @@ from threading import Thread
 import time
 
 @ttl_cache(maxsize=100, ttl=60)
-def get_data():
+def get_data() -> int:
     time.sleep(1) # simulating a network call
     print("YOOO I RAN")
     return 10

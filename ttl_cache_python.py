@@ -21,7 +21,8 @@ for t in threads:
 
 # stdout "YOOO I RAN" only fires once.
 # This tells us a few things:
-# - ttl_cache is thread-safe.
+# - ttl_cache is thread-safe, AS LONG as all memory mutated is thread-local 
+#       - in other words, don't be mutating global vars that aren't guarded by a lock itself.
 # - once subsequent threads get their turn at the lock, they will first check
 #   to see if there is a cache hit, unlock, and then return.
 # - this is a nice decorator to use to easily ttl cache network calls, for example.
